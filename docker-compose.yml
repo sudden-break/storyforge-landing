@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  landing:
+    build: .
+    container_name: storyforge-landing
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./data:/app/data
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true

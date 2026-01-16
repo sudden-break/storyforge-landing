@@ -1,0 +1,26 @@
+# Dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Next.js
+.next
+out
+
+# Production
+build
+
+# Git
+.git
+.gitignore
+
+# Email Daten (werden als Volume gemountet)
+data/emails.json
+
+# Dokumentation
+README.md
+*.md
+
+# IDE
+.vscode
+.idea
