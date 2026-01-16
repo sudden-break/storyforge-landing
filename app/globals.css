@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
-:root {
+@theme {
   /* Instagram Brand Colors */
-  --ig-orange: #F58529;
-  --ig-pink: #DD2A7B;
-  --ig-purple: #8134AF;
-  --ig-blue: #515BD4;
+  --color-ig-orange: #F58529;
+  --color-ig-pink: #DD2A7B;
+  --color-ig-purple: #8134AF;
+  --color-ig-blue: #515BD4;
 
   /* Dark Theme Colors */
-  --bg-primary: #0D0D0D;
-  --bg-secondary: #1A1A1A;
-  --bg-card: #222222;
+  --color-bg-primary: #0D0D0D;
+  --color-bg-secondary: #1A1A1A;
+  --color-bg-card: #222222;
 
   /* Text Colors */
-  --text-primary: #FFFFFF;
-  --text-secondary: #A0A0A0;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #A0A0A0;
 
   /* Accent Colors */
-  --electric-blue: #00D4FF;
-  --success-green: #00D26A;
-  --error-red: #FF4757;
+  --color-electric-blue: #00D4FF;
+  --color-success-green: #00D26A;
+  --color-error-red: #FF4757;
 }
 
 * {
@@ -35,8 +35,8 @@ body {
 }
 
 body {
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  background: #0D0D0D;
+  color: #FFFFFF;
   font-family: -apple-system, BlinkMacSystemFont, 'DM Sans', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

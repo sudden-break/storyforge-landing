@@ -34,7 +34,7 @@ export default function EmailSignup() {
         <h2 className="text-3xl font-bold mb-4 text-center">
           Bleib auf dem Laufenden
         </h2>
-        <p className="text-text-secondary mb-8 text-center">
+        <p className="text-gray-400 mb-8 text-center">
           Erhalte Updates zum Launch von StoryForge.cloud
         </p>
 
@@ -46,24 +46,27 @@ export default function EmailSignup() {
             placeholder="deine@email.com"
             required
             disabled={status === 'loading' || status === 'success'}
-            className="w-full px-4 py-3 bg-bg-card border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-ig-pink disabled:opacity-50"
+            className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600 disabled:opacity-50"
           />
           <button
             type="submit"
             disabled={status === 'loading' || status === 'success'}
-            className="w-full py-3 bg-gradient-to-r from-ig-orange via-ig-pink to-ig-purple rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+            className="w-full py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 text-white"
+            style={{
+              backgroundImage: 'linear-gradient(to right, #F58529, #DD2A7B, #8134AF)'
+            }}
           >
             {status === 'loading' ? 'Wird gespeichert...' : 'Updates erhalten'}
           </button>
         </form>
 
         {status === 'success' && (
-          <p className="text-success-green text-center mt-4">
+          <p className="text-green-500 text-center mt-4">
             ✅ Du bist auf der Liste!
           </p>
         )}
         {status === 'error' && (
-          <p className="text-error-red text-center mt-4">
+          <p className="text-red-500 text-center mt-4">
             ❌ Fehler. Bitte versuche es später nochmal.
           </p>
         )}
