@@ -1,29 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
-
-const EMAILS_FILE = path.join(process.cwd(), 'data', 'emails.json');
-
-interface EmailEntry {
-  email: string;
-  timestamp: string;
-  ip?: string;
-}
-
-// Initialisiere emails.json wenn nicht vorhanden
-async function ensureEmailsFile() {
-  try {
-    await fs.access(EMAILS_FILE);
-  } catch {
-    await fs.mkdir(path.dirname(EMAILS_FILE), { recursive: true });
-    await fs.writeFile(EMAILS_FILE, JSON.stringify([], null, 2));
-  }
-}
+import { prisma } from '@/lib/prisma';
 
 export async function POST(request: NextRequest) {
   try {
-    await ensureEmailsFile();
-
     const { email } = await request.json();
 
     // Validierung
@@ -34,12 +13,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Vorhandene Emails laden
-    const data = await fs.readFile(EMAILS_FILE, 'utf-8');
-    const emails: EmailEntry[] = JSON.parse(data);
+    // Prüfen ob Email bereits existiert
+    const existing = await prisma.emailSubscriber.findUnique({
+      where: { email }
+    });
 
-    // Check für Duplikate
-    if (emails.some(entry => entry.email === email)) {
+    if (existing) {
+      // Wenn bereits unsubscribed, reaktivieren
+      if (existing.status === 'unsubscribed') {
+        await prisma.emailSubscriber.update({
+          where: { email },
+          data: {
+            status: 'active',
+            subscribedAt: new Date(),
+          }
+        });
+        return NextResponse.json({ success: true, message: 'Email reactivated' });
+      }
+
       return NextResponse.json(
         { error: 'Email already exists' },
         { status: 409 }
@@ -47,16 +38,15 @@ export async function POST(request: NextRequest) {
     }
 
     // Neue Email hinzufügen
-    const newEntry: EmailEntry = {
-      email,
-      timestamp: new Date().toISOString(),
-      ip: request.headers.get('x-forwarded-for') || undefined
-    };
-
-    emails.push(newEntry);
-
-    // Speichern
-    await fs.writeFile(EMAILS_FILE, JSON.stringify(emails, null, 2));
+    await prisma.emailSubscriber.create({
+      data: {
+        email,
+        ipAddress: request.headers.get('x-forwarded-for') || null,
+        userAgent: request.headers.get('user-agent') || null,
+        referralSource: request.headers.get('referer') || null,
+        status: 'active',
+      }
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {
