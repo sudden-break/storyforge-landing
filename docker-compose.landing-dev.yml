@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  landing-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: storyforge-landing-dev
+    restart: unless-stopped
+    ports:
+      - "3003:3000"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=${DATABASE_URL}
+      - DIRECT_URL=${DIRECT_URL}
+    networks:
+      - dokploy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.landing-dev.rule=Host(`landing.dev.storyforge.cloud`)"
+      - "traefik.http.routers.landing-dev.entrypoints=websecure"
+      - "traefik.http.routers.landing-dev.tls.certresolver=letsencrypt"
+      - "traefik.http.services.landing-dev.loadbalancer.server.port=3000"
+
+networks:
+  dokploy-network:
+    external: true
