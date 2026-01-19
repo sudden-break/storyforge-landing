@@ -9,8 +9,17 @@ RUN npm ci
 # Builder
 FROM base AS builder
 WORKDIR /app
+
+# Build-Arguments für Datenbank
+ARG DATABASE_URL=postgresql://localhost:5432/storyforge_dev
+ENV DATABASE_URL=${DATABASE_URL}
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# Prisma Client generieren
+RUN npx prisma generate
+
 RUN npm run build
 
 # Runner

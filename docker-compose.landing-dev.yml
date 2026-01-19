@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - DATABASE_URL=postgresql://storyforge_dev:CFHPlgCc4H2gIURfVennLxvR2@dokploy-postgres:5432/storyforge_dev
     container_name: storyforge-landing-dev
     restart: unless-stopped
     ports:
