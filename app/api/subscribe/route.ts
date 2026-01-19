@@ -1,11 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
 
 // Force dynamic rendering (no build-time DB connection needed)
 export const dynamic = 'force-dynamic';
 
+// Lazy import Prisma to avoid build-time initialization
+async function getPrisma() {
+  const { prisma } = await import('@/lib/prisma');
+  return prisma;
+}
+
 export async function POST(request: NextRequest) {
   try {
+    const prisma = await getPrisma();
     const { email } = await request.json();
 
     // Validierung
