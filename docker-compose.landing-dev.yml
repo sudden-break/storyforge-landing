@@ -24,8 +24,12 @@ services:
       - "traefik.http.routers.storyforge-landing-dev.rule=Host(`landing.dev.storyforge.cloud`)"
       - "traefik.http.routers.storyforge-landing-dev.entrypoints=websecure"
       - "traefik.http.routers.storyforge-landing-dev.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.storyforge-landing-dev.priority=100"
+      - "traefik.http.routers.storyforge-landing-dev.priority=200"
+      - "traefik.http.routers.storyforge-landing-dev.service=storyforge-landing-dev"
       - "traefik.http.services.storyforge-landing-dev.loadbalancer.server.port=3000"
+      # Disable old auto-generated routers by overriding their priority
+      - "traefik.http.routers.instagrammonitor-landingpage-ltqpbi-14-websecure.priority=1"
+      - "traefik.http.routers.instagrammonitor-landingpage-ltqpbi-14-websecure.rule=Host(`DISABLED-dev.storyforge.cloud`)"
 
 networks:
   dokploy-network:
