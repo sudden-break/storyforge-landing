@@ -11,6 +11,10 @@ if [ ! -f "/app/data/emails.json" ]; then
     echo "[]" > /app/data/emails.json
 fi
 
+# Run database migrations (email migration)
+echo "🔄 Running database migrations..."
+npm run migrate 2>/dev/null || echo "ℹ️  Migration script not available or already run"
+
 # Fix ownership
 chown -R nextjs:nodejs /app/data
 chmod 755 /app/data
