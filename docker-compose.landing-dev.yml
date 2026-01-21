@@ -11,6 +11,8 @@ services:
     restart: unless-stopped
     ports:
       - "3003:3000"
+    volumes:
+      - emails_data:/app/data
     environment:
       - NODE_ENV=development
       - DATABASE_URL=${DATABASE_URL}
@@ -36,3 +38,7 @@ services:
 networks:
   dokploy-network:
     external: true
+
+volumes:
+  emails_data:
+    driver: local
