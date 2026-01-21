@@ -3,6 +3,10 @@
  *
  * This script reads emails from /app/data/emails.json and migrates them
  * to the database if they don't already exist.
+ *
+ * The migration is idempotent and runs if:
+ * - No marker file exists OR
+ * - Database table is empty (even if marker exists)
  */
 
 import { PrismaClient } from '@prisma/client';
@@ -23,10 +27,21 @@ async function getPrisma() {
 async function migrateEmails() {
   console.log('📧 Checking for emails to migrate...');
 
-  // Skip if already migrated
-  if (existsSync(MIGRATED_MARKER_PATH)) {
-    console.log('✅ Emails already migrated (marker file exists)');
+  const prisma = await getPrisma();
+
+  // Check if database has any subscribers - if empty, always run migration
+  const existingCount = await prisma.emailSubscriber.count();
+  const dbIsEmpty = existingCount === 0;
+
+  // Skip if marker exists AND database is not empty
+  if (existsSync(MIGRATED_MARKER_PATH) && !dbIsEmpty) {
+    console.log(`✅ Emails already migrated (marker exists, ${existingCount} in DB)`);
+    await prisma.$disconnect();
     return;
+  }
+
+  if (dbIsEmpty) {
+    console.log('🔄 Database is empty - running migration regardless of marker');
   }
 
   // Check if emails.json exists
@@ -34,6 +49,7 @@ async function migrateEmails() {
     console.log('ℹ️  No emails.json file found - skipping migration');
     // Create empty marker to prevent re-checking
     await writeFile(MIGRATED_MARKER_PATH, new Date().toISOString());
+    await prisma.$disconnect();
     return;
   }
 
@@ -44,19 +60,19 @@ async function migrateEmails() {
     emails = JSON.parse(content);
   } catch (error) {
     console.error('❌ Failed to read emails.json:', error);
+    await prisma.$disconnect();
     return;
   }
 
   if (!Array.isArray(emails) || emails.length === 0) {
     console.log('ℹ️  No emails in emails.json - skipping migration');
     await writeFile(MIGRATED_MARKER_PATH, new Date().toISOString());
+    await prisma.$disconnect();
     return;
   }
 
   console.log(`📋 Found ${emails.length} email(s) to migrate`);
 
-  // Migrate to database
-  const prisma = await getPrisma();
   let migrated = 0;
   let skipped = 0;
 
@@ -101,7 +117,7 @@ async function migrateEmails() {
 
   await prisma.$disconnect();
 
-  // Write marker file to prevent re-migration
+  // Write marker file to prevent re-migration (unless DB gets emptied again)
   await writeFile(MIGRATED_MARKER_PATH, JSON.stringify({
     migratedAt: new Date().toISOString(),
     total: emails.length,
