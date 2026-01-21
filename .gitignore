@@ -29,5 +29,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Email Daten
-data/emails.json
+# Email Daten (local overrides)
+data/emails.json.local
+data/emails.json.migrated

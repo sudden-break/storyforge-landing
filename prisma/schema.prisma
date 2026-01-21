@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ========== Email Subscribers (Landing Page) ==========
+
+model EmailSubscriber {
+  id             Int      @id @default(autoincrement())
+  email          String   @unique @db.VarChar(255)
+  subscribedAt   DateTime @default(now()) @map("subscribed_at") @db.Timestamptz()
+  ipAddress      String?  @map("ip_address") @db.VarChar(45)
+  userAgent      String?  @map("user_agent") @db.Text
+  referralSource String?  @map("referral_source") @db.VarChar(255)
+  status         String   @default("active") @db.VarChar(20)  // active, unsubscribed, bounced
+  metadata       Json     @default("{}") @db.JsonB
+
+  // Optional: Link zu User wenn Subscriber sich registriert
+  userId         String?  @map("user_id")
+  convertedAt    DateTime? @map("converted_at") @db.Timestamptz()
+
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt      DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+  @@index([email])
+  @@index([status])
+  @@index([userId])
+  @@map("email_subscribers")
+}
