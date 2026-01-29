@@ -63,7 +63,7 @@ export default function CTABanner() {
                 stagger={1}
               >
                 <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-                  Join StoryForge today and start monitoring Instagram Stories with AI-powered insights
+                  Join StoryForge today and start monitoring Instagram Stories
                 </p>
               </Motion.Div>
             )}
