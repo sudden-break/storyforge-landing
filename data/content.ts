@@ -160,7 +160,7 @@ const content: LandingPageContent = {
       {
         id: "connect",
         title: "Connect",
-        description: "Sign up and connect your Instagram account. No password required – we use secure OAuth authentication.",
+        description: "Sign up and connect the Instagram accounts you want to monitor.",
         icon: "Users",
       },
       {
@@ -172,7 +172,7 @@ const content: LandingPageContent = {
       {
         id: "transform",
         title: "Transform",
-        description: "AI generates variants, summaries, and insights from captured stories. Available on Pro and Pro+ plans.",
+        description: "AI generates variants from captured stories. Available on Pro and Pro+ plans.",
         icon: "Sparkles",
       },
     ],
