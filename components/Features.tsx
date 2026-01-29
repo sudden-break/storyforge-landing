@@ -4,8 +4,6 @@ import type { LucideIcon } from 'lucide-react';
 import {
   Eye,
   Sparkles,
-  Bell,
-  BarChart3,
   Shield,
   Users,
 } from 'lucide-react';
@@ -23,8 +21,6 @@ import content from '@/data/content';
 const iconMap: Record<string, LucideIcon> = {
   Eye,
   Sparkles,
-  Bell,
-  BarChart3,
   Shield,
   Users,
 };
@@ -175,7 +171,7 @@ function FeatureCard({ feature, index, isInView, prefersReducedMotion, isLarge =
  *
  * Layout:
  * - 2 large cards (Story Monitoring, AI Generation) - span 2 columns on desktop
- * - 4 smaller cards (Real-time Alerts, Analytics, Privacy First, Multiple Profiles)
+ * - 2 smaller cards (Privacy First, Multiple Profiles)
  * - Responsive: 1 col mobile, 2 col tablet, 3 col desktop
  *
  * Features:

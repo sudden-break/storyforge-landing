@@ -16,9 +16,7 @@ export interface HeroContent {
   headline: string;
   subheadline: string;
   primaryCta: string;
-  secondaryCta: string;
   primaryCtaUrl: string;
-  secondaryCtaUrl: string;
 }
 
 export interface FeatureItem {
@@ -112,11 +110,9 @@ const content: LandingPageContent = {
   // ------------------------------------------------------------------
   hero: {
     headline: "Never Miss an Instagram Story Again",
-    subheadline: "Automatically monitor, archive, and transform Instagram Stories with AI. Get real-time alerts and insights for any account you follow.",
+    subheadline: "Automatically monitor, archive, and transform Instagram Stories with AI-powered content generation.",
     primaryCta: "Start Free",
-    secondaryCta: "View Demo",
     primaryCtaUrl: "https://app.storyforge.cloud",
-    secondaryCtaUrl: "#demo",
   },
 
   // ------------------------------------------------------------------
@@ -135,21 +131,9 @@ const content: LandingPageContent = {
       {
         id: "ai-generation",
         title: "AI Generation",
-        description: "Transform captured stories with AI-powered generation. Create variants, summaries, and extract insights automatically.",
+        description: "Transform captured stories with AI-powered generation. Create content variants automatically.",
         icon: "Sparkles",
         badge: "Premium",
-      },
-      {
-        id: "real-time-alerts",
-        title: "Real-time Alerts",
-        description: "Get instant notifications when stories are posted. Customize alerts for specific accounts or keywords.",
-        icon: "Bell",
-      },
-      {
-        id: "analytics",
-        title: "Analytics",
-        description: "Track story patterns, posting schedules, and engagement metrics. Gain valuable insights from historical data.",
-        icon: "BarChart3",
       },
       {
         id: "privacy",
@@ -279,17 +263,17 @@ const content: LandingPageContent = {
       {
         id: "what-is",
         question: "What is StoryForge?",
-        answer: "StoryForge is an Instagram Story monitoring and archiving service. We automatically capture and store stories from accounts you follow, alert you in real-time when new stories are posted, and use AI to generate insights and variants from the captured content.",
+        answer: "StoryForge is an Instagram Story monitoring and archiving service. We automatically capture and store stories from accounts you follow, send you desktop notifications when new stories are posted, and use AI to generate variants from the captured content.",
       },
       {
         id: "account-security",
         question: "Is my Instagram account safe?",
-        answer: "Absolutely. We use secure OAuth authentication – you never share your Instagram password with us. We only read publicly available stories and don't interact with your account on your behalf. Your data is encrypted and never shared with third parties.",
+        answer: "Absolutely. You never share your Instagram password with us. We only read publicly available stories and don't interact with your account on your behalf. Your data is encrypted and never shared with third parties.",
       },
       {
         id: "ai-generation",
         question: "How does the AI generation work?",
-        answer: "Our AI analyzes captured stories to generate summaries, extract key insights, and create content variants. It can identify trends, patterns, and important information across multiple stories. This feature is available on Pro and Pro+ plans.",
+        answer: "Our AI analyzes captured stories to create content variants. It can generate different versions and transformations of the captured stories. This feature is available on Pro and Pro+ plans.",
       },
       {
         id: "payment-methods",
@@ -314,7 +298,7 @@ const content: LandingPageContent = {
       {
         id: "monitoring-works",
         question: "How does Story Monitoring work?",
-        answer: "Once you connect accounts to monitor, our system checks for new stories at regular intervals based on your plan (5-60 minutes). When new stories are detected, they're automatically archived to your account, and you'll receive real-time alerts if enabled.",
+        answer: "Once you connect accounts to monitor, our system checks for new stories at regular intervals based on your plan (5-60 minutes). When new stories are detected, they're automatically archived to your account, and you'll receive desktop notifications if enabled.",
       },
     ],
   },

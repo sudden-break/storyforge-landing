@@ -10,12 +10,11 @@ import content from '../data/content';
 // ============================================================================
 
 /**
- * Hero section with animated headline, CTAs, and email signup.
+ * Hero section with animated headline and CTAs.
  *
  * Features:
  * - Staggered entrance animations
- * - Two CTAs linking to app and demo
- * - Email signup as alternative conversion path
+ * - Primary CTA linking to app
  * - Gradient animated background
  * - AppMockup integration placeholder
  */
@@ -103,29 +102,6 @@ export default function Hero() {
                   >
                     {heroContent.primaryCta}
                   </Button>
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    asLink
-                    href={heroContent.secondaryCtaUrl}
-                  >
-                    {heroContent.secondaryCta}
-                  </Button>
-                </Motion.Div>
-              )}
-
-              {/* Email Signup - Alternative CTA */}
-              {mounted && (
-                <Motion.Div
-                  animation="slide-up"
-                  duration="base"
-                  stagger={4}
-                  className="pt-4"
-                >
-                  <div className="text-sm text-[#666666] mb-4">
-                    Or get launch updates via email
-                  </div>
-                  <EmailSignupForm />
                 </Motion.Div>
               )}
             </div>
@@ -184,76 +160,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  );
-}
-
-// ============================================================================
-// Email Signup Form Component
-// ============================================================================
-
-interface EmailSignupFormState {
-  email: string;
-  status: 'idle' | 'loading' | 'success' | 'error';
-}
-
-function EmailSignupForm() {
-  const [state, setState] = useState<EmailSignupFormState>({
-    email: '',
-    status: 'idle',
-  });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setState((prev) => ({ ...prev, status: 'loading' }));
-
-    try {
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: state.email }),
-      });
-
-      if (response.ok) {
-        setState({ email: '', status: 'success' });
-      } else {
-        setState((prev) => ({ ...prev, status: 'error' }));
-      }
-    } catch {
-      setState((prev) => ({ ...prev, status: 'error' }));
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="flex gap-2 max-w-md mx-auto lg:mx-0">
-      <input
-        type="email"
-        value={state.email}
-        onChange={(e) => setState((prev) => ({ ...prev, email: e.target.value }))}
-        placeholder="your@email.com"
-        required
-        disabled={state.status === 'loading' || state.status === 'success'}
-        className="flex-1 px-4 py-3 bg-[#1A1A1A] border border-[#333333] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DD2A7B] focus:border-transparent disabled:opacity-50 transition-all text-sm"
-      />
-      <Button
-        type="submit"
-        variant="secondary"
-        size="md"
-        disabled={state.status === 'loading' || state.status === 'success'}
-        loading={state.status === 'loading'}
-      >
-        {state.status === 'success' ? 'Joined!' : 'Join'}
-      </Button>
-
-      {state.status === 'success' && (
-        <p className="absolute -bottom-8 left-0 text-sm text-[#00D26A]">
-          You're on the list! We'll be in touch.
-        </p>
-      )}
-      {state.status === 'error' && (
-        <p className="absolute -bottom-8 left-0 text-sm text-[#FF4757]">
-          Something went wrong. Please try again.
-        </p>
-      )}
-    </form>
   );
 }
