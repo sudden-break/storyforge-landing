@@ -268,7 +268,7 @@ const content: LandingPageContent = {
       {
         id: "account-security",
         question: "Is my Instagram account safe?",
-        answer: "Absolutely. You never share your Instagram password with us. We only read publicly available stories and don't interact with your account on your behalf. Your data is encrypted and never shared with third parties.",
+        answer: "We access stories through your Instagram session using the session information you provide. Your session data is stored securely and used solely to monitor stories on your behalf. We don't share your data with third parties and you can revoke access at any time by clearing your session from our servers.",
       },
       {
         id: "ai-generation",
