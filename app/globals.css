@@ -1,25 +1,192 @@
 @import "tailwindcss";
 
 @theme {
-  /* Instagram Brand Colors */
+  /* ============================================
+     INSTAGRAM BRAND COLORS
+     ============================================ */
   --color-ig-orange: #F58529;
   --color-ig-pink: #DD2A7B;
   --color-ig-purple: #8134AF;
   --color-ig-blue: #515BD4;
 
-  /* Dark Theme Colors */
+  /* Instagram Gradient (for reference) */
+  --gradient-instagram: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+
+  /* ============================================
+     DARK THEME COLORS
+     ============================================ */
   --color-bg-primary: #0D0D0D;
   --color-bg-secondary: #1A1A1A;
   --color-bg-card: #222222;
 
-  /* Text Colors */
+  /* ============================================
+     TEXT COLORS
+     ============================================ */
   --color-text-primary: #FFFFFF;
   --color-text-secondary: #A0A0A0;
+  --color-text-muted: #666666;
 
-  /* Accent Colors */
+  /* ============================================
+     ACCENT COLORS
+     ============================================ */
   --color-electric-blue: #00D4FF;
   --color-success-green: #00D26A;
   --color-error-red: #FF4757;
+  --color-warning-yellow: #FFC947;
+
+  /* ============================================
+     SPACING SCALE (px)
+     Base unit: 4px following 4px grid system
+     ============================================ */
+  --spacing-0: 0;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+  --spacing-32: 128px;
+
+  /* ============================================
+     BORDER RADIUS
+     ============================================ */
+  --radius-none: 0;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-full: 9999px;
+
+  /* ============================================
+     SHADOWS
+     Designed for dark theme with subtle elevation
+     ============================================ */
+  /* Subtle - minimal elevation for cards */
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.4),
+                  0 1px 2px rgba(0, 0, 0, 0.3);
+
+  /* Medium - standard elevation for floating elements */
+  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.4),
+                   0 2px 4px rgba(0, 0, 0, 0.3),
+                   0 0 1px rgba(255, 255, 255, 0.05);
+
+  /* Large - dropdowns, modals, popovers */
+  --shadow-large: 0 10px 15px rgba(0, 0, 0, 0.5),
+                 0 4px 6px rgba(0, 0, 0, 0.4),
+                 0 0 1px rgba(255, 255, 255, 0.05);
+
+  /* Glow - accent glow for CTAs, highlights */
+  --shadow-glow: 0 0 20px rgba(0, 212, 255, 0.3),
+                0 0 40px rgba(0, 212, 255, 0.15);
+
+  /* Instagram gradient glow */
+  --shadow-glow-ig: 0 0 20px rgba(221, 42, 123, 0.25),
+                   0 0 40px rgba(245, 133, 41, 0.15);
+
+  /* Glass - for glassmorphism cards */
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4),
+                 0 2px 8px rgba(0, 0, 0, 0.3),
+                 inset 0 1px 1px rgba(255, 255, 255, 0.05);
+
+  /* ============================================
+     BLUR LEVELS
+     For backdrop-filter and glassmorphism effects
+     ============================================ */
+  --blur-sm: 8px;
+  --blur-md: 16px;
+  --blur-lg: 24px;
+  --blur-xl: 40px;
+
+  /* ============================================
+     TRANSITION DURATIONS
+     ============================================ */
+  --duration-instant: 100ms;
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 700ms;
+
+  /* ============================================
+     EASING FUNCTIONS
+     Custom cubic-bezier curves for premium feel
+     ============================================ */
+  /* Ease Out Expo - snappy, confident exits */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Ease In Out Expo - smooth, dramatic */
+  --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+
+  /* Ease Out Quart - smooth deceleration */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* Ease In Out Cubic - balanced motion */
+  --ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Ease Out Back - subtle overshoot for emphasis */
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Spring - natural, bouncy feel */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* ============================================
+     Z-INDEX SCALE
+     Organized layering for predictable stacking
+     ============================================ */
+  --z-base: 0;
+  --z-above: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-popover: 600;
+  --z-tooltip: 700;
+
+  /* ============================================
+     TYPOGRAPHY SYSTEM
+     Space Grotesk for headlines, DM Sans for body
+     ============================================ */
+  /* Font Families */
+  --font-space-grotesk: 'Space Grotesk', sans-serif;
+  --font-dm-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-display: var(--font-space-grotesk);
+  --font-body: var(--font-dm-sans);
+
+  /* Typography Scale (rem) */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
+  --text-6xl: 3.75rem;     /* 60px */
+  --text-7xl: 4.5rem;      /* 72px */
+
+  /* Letter Spacing */
+  --letter-tighter: -0.04em;
+  --letter-tight: -0.02em;
+  --letter-normal: 0;
+  --letter-wide: 0.02em;
+  --letter-wider: 0.04em;
+
+  /* Line Heights */
+  --lead-tight: 1.1;
+  --lead-snug: 1.25;
+  --lead-normal: 1.5;
+  --lead-relaxed: 1.625;
+  --lead-loose: 2;
 }
 
 html,
@@ -31,11 +198,101 @@ body {
 body {
   background: #0D0D0D;
   color: #FFFFFF;
-  font-family: -apple-system, BlinkMacSystemFont, 'DM Sans', 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-dm-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   TYPOGRAPHY STYLES
+   ============================================ */
+
+/* Headlines - Space Grotesk with tight letter-spacing */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-space-grotesk);
+  letter-spacing: var(--letter-tight);
+  line-height: var(--lead-snug);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+h1 {
+  font-size: var(--text-5xl);
+  font-weight: 700;
+  letter-spacing: var(--letter-tighter);
+  line-height: var(--lead-tight);
+}
+
+h2 {
+  font-size: var(--text-4xl);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: var(--text-3xl);
+  font-weight: 600;
+}
+
+h4 {
+  font-size: var(--text-2xl);
+  font-weight: 500;
+}
+
+h5 {
+  font-size: var(--text-xl);
+  font-weight: 500;
+}
+
+h6 {
+  font-size: var(--text-lg);
+  font-weight: 500;
+}
+
+/* Body Text - DM Sans */
+p {
+  font-family: var(--font-dm-sans);
+  line-height: var(--lead-relaxed);
+  color: var(--color-text-primary);
+}
+
+/* Typography Utility Classes */
+.font-display {
+  font-family: var(--font-space-grotesk);
+  letter-spacing: var(--letter-tight);
+}
+
+.font-body {
+  font-family: var(--font-dm-sans);
+}
+
+/* Display Text Sizes (for use with font-display) */
+.text-display-xs { font-size: var(--text-xs); }
+.text-display-sm { font-size: var(--text-sm); }
+.text-display-base { font-size: var(--text-base); }
+.text-display-lg { font-size: var(--text-lg); }
+.text-display-xl { font-size: var(--text-xl); }
+.text-display-2xl { font-size: var(--text-2xl); }
+.text-display-3xl { font-size: var(--text-3xl); }
+.text-display-4xl { font-size: var(--text-4xl); }
+.text-display-5xl { font-size: var(--text-5xl); }
+.text-display-6xl { font-size: var(--text-6xl); }
+
+/* Letter Spacing Utilities */
+.letter-tighter { letter-spacing: var(--letter-tighter); }
+.letter-tight { letter-spacing: var(--letter-tight); }
+.letter-wide { letter-spacing: var(--letter-wide); }
+
+/* Lead Paragraph */
+.lead {
+  font-size: var(--text-xl);
+  line-height: var(--lead-relaxed);
+  color: var(--color-text-secondary);
+}
+
+/* Small text */
+.small {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
 }
 
 /* Instagram Gradient Background */
@@ -44,4 +301,307 @@ body {
     radial-gradient(circle at 20% 50%, rgba(245, 133, 41, 0.15), transparent 50%),
     radial-gradient(circle at 80% 50%, rgba(221, 42, 123, 0.15), transparent 50%),
     radial-gradient(circle at 50% 100%, rgba(129, 52, 175, 0.1), transparent 50%);
+}
+
+/* ============================================
+   MOTION SYSTEM
+   Animation keyframes, utilities, and reduced motion support
+   ============================================ */
+
+/* Stagger Delays (for sequential animations) */
+:root {
+  --stagger-1: 50ms;
+  --stagger-2: 100ms;
+  --stagger-3: 150ms;
+  --stagger-4: 200ms;
+  --stagger-5: 250ms;
+  --stagger-6: 300ms;
+  --stagger-7: 350ms;
+  --stagger-8: 400ms;
+}
+
+/* Duration Utility Classes */
+.duration-fast { animation-duration: var(--duration-fast); transition-duration: var(--duration-fast); }
+.duration-base { animation-duration: var(--duration-base); transition-duration: var(--duration-base); }
+.duration-slow { animation-duration: var(--duration-slow); transition-duration: var(--duration-slow); }
+
+/* Stagger Delay Classes */
+.stagger-1 { animation-delay: var(--stagger-1); transition-delay: var(--stagger-1); }
+.stagger-2 { animation-delay: var(--stagger-2); transition-delay: var(--stagger-2); }
+.stagger-3 { animation-delay: var(--stagger-3); transition-delay: var(--stagger-3); }
+.stagger-4 { animation-delay: var(--stagger-4); transition-delay: var(--stagger-4); }
+.stagger-5 { animation-delay: var(--stagger-5); transition-delay: var(--stagger-5); }
+.stagger-6 { animation-delay: var(--stagger-6); transition-delay: var(--stagger-6); }
+.stagger-7 { animation-delay: var(--stagger-7); transition-delay: var(--stagger-7); }
+.stagger-8 { animation-delay: var(--stagger-8); transition-delay: var(--stagger-8); }
+
+/* ============================================
+   CSS KEYFRAMES
+   ============================================ */
+
+/* Fade Animations */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Slide Animations */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale Animations */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* Scale-X Animation (for horizontal line expansion) */
+@keyframes scale-x {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/* Scale-Y Animation (for vertical line expansion) */
+@keyframes scale-y {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* Spin Animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: var(--ease-out-expo);
+  }
+  50% {
+    transform: translateY(-10px);
+    animation-timing-function: var(--ease-in-out-cubic);
+  }
+}
+
+/* Shimmer Animation (for loading states) */
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
+/* Float Animation (for floating elements) */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Glow Pulse Animation */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.6); }
+}
+
+/* ============================================
+   ANIMATION UTILITY CLASSES
+   ============================================ */
+
+.animate-fade-in { animation: fade-in var(--duration-base) var(--ease-out-expo) forwards; }
+.animate-fade-out { animation: fade-out var(--duration-base) var(--ease-out-expo) forwards; }
+.animate-slide-up { animation: slide-up var(--duration-base) var(--ease-out-expo) forwards; }
+.animate-slide-down { animation: slide-down var(--duration-base) var(--ease-out-expo) forwards; }
+.animate-slide-left { animation: slide-left var(--duration-base) var(--ease-out-expo) forwards; }
+.animate-slide-right { animation: slide-right var(--duration-base) var(--ease-out-expo) forwards; }
+.animate-scale-in { animation: scale-in var(--duration-base) var(--ease-spring) forwards; }
+.animate-scale-out { animation: scale-out var(--duration-base) var(--ease-out-quart) forwards; }
+.animate-scale-x { animation: scale-x var(--duration-slow) var(--ease-out-expo) forwards; }
+.animate-scale-y { animation: scale-y var(--duration-slow) var(--ease-out-expo) forwards; }
+.animate-spin { animation: spin 1s linear infinite; }
+.animate-pulse { animation: pulse 2s var(--ease-in-out-cubic) infinite; }
+.animate-bounce { animation: bounce 1s infinite; }
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+  background-size: 200% 100%;
+}
+.animate-float { animation: float 3s var(--ease-in-out-cubic) infinite; }
+.animate-glow-pulse { animation: glow-pulse 2s var(--ease-in-out-cubic) infinite; }
+
+/* Intersection Observer Animation States */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-base) var(--ease-out-expo),
+              transform var(--duration-base) var(--ease-out-expo);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover Animation Classes */
+.hover-lift {
+  transition: transform var(--duration-fast) var(--ease-out-expo);
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+.hover-scale {
+  transition: transform var(--duration-fast) var(--ease-out-expo);
+}
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+.hover-glow {
+  transition: box-shadow var(--duration-fast) var(--ease-out-expo);
+}
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+}
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   Respects user's motion preferences at OS level
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all animations for users who prefer reduced motion */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable scroll snapping */
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Explicitly disable common animations */
+  .animate-fade-in,
+  .animate-fade-out,
+  .animate-slide-up,
+  .animate-slide-down,
+  .animate-slide-left,
+  .animate-slide-right,
+  .animate-scale-in,
+  .animate-scale-out,
+  .animate-scale-x,
+  .animate-scale-y,
+  .animate-spin,
+  .animate-pulse,
+  .animate-bounce,
+  .animate-shimmer,
+  .animate-float,
+  .animate-glow-pulse {
+    animation: none !important;
+  }
+
+  /* Keep scroll-triggered elements visible immediately */
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Disable hover animations */
+  .hover-lift:hover,
+  .hover-scale:hover,
+  .hover-glow:hover {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* For JavaScript-based reduced motion detection */
+.motion-reduce {
+  animation: none !important;
+  transition: none !important;
 }
