@@ -40,7 +40,6 @@ interface FeatureCardProps {
   index: number;
   isInView: boolean;
   prefersReducedMotion: boolean;
-  isLarge?: boolean;
 }
 
 // ============================================================================
@@ -49,9 +48,8 @@ interface FeatureCardProps {
 
 /**
  * Individual feature card with icon, title, and description.
- * Supports larger variant for prominent features (Story Monitoring, AI Generation).
  */
-function FeatureCard({ feature, index, isInView, prefersReducedMotion, isLarge = false }: FeatureCardProps) {
+function FeatureCard({ feature, index, isInView, prefersReducedMotion }: FeatureCardProps) {
   const Icon = iconMap[feature.icon];
 
   // Stagger delay based on index
@@ -73,7 +71,7 @@ function FeatureCard({ feature, index, isInView, prefersReducedMotion, isLarge =
     >
       <GlassCard
         variant="subtle"
-        padding={isLarge ? 'lg' : 'md'}
+        padding="lg"
         hover
         glow
         className={[
@@ -167,12 +165,12 @@ function FeatureCard({ feature, index, isInView, prefersReducedMotion, isLarge =
 // ============================================================================
 
 /**
- * Features section with Bento-grid layout.
+ * Features section with balanced grid layout.
  *
  * Layout:
- * - 2 large cards (Story Monitoring, AI Generation) - span 2 columns on desktop
- * - 2 smaller cards (Privacy First, Multiple Profiles)
- * - Responsive: 1 col mobile, 2 col tablet, 3 col desktop
+ * - Mobile: 1 column
+ * - Tablet (md): 2 columns
+ * - Desktop (lg): 2 columns (2x2 grid)
  *
  * Features:
  * - Scroll-triggered fade-in animations via IntersectionObserver
@@ -185,9 +183,6 @@ export default function Features() {
   const featuresContent = content.features;
   const prefersReducedMotion = useReducedMotion();
   const { ref: sectionRef, isInView } = useInView({ threshold: 0.1 });
-
-  // Determine which features are large (first two: Story Monitoring, AI Generation)
-  const largeFeatureIds = ['story-monitoring', 'ai-generation'];
 
   return (
     <section
@@ -214,39 +209,25 @@ export default function Features() {
           />
         </div>
 
-        {/* Bento Grid Layout */}
-        {/* Mobile: 1 col, Tablet: 2 col, Desktop: 3 col with spanning */}
+        {/* Balanced 2x2 Grid Layout */}
+        {/* Mobile: 1 col, Tablet/Desktop: 2 col (2x2 grid) */}
         <div className={[
           'grid',
           'grid-cols-1',
           'md:grid-cols-2',
-          'lg:grid-cols-3',
           'gap-4',
           'md:gap-6',
         ].join(' ')}>
-          {featuresContent.features.map((feature, index) => {
-            const isLarge = largeFeatureIds.includes(feature.id);
-
-            // Bento grid span classes for large cards
-            const spanClasses = isLarge
-              ? 'lg:col-span-2'  // Large cards span 2 columns on desktop
-              : 'lg:col-span-1';  // Small cards take 1 column
-
-            return (
-              <div
-                key={feature.id}
-                className={spanClasses}
-              >
-                <FeatureCard
-                  feature={feature}
-                  index={index}
-                  isInView={isInView}
-                  prefersReducedMotion={prefersReducedMotion}
-                  isLarge={isLarge}
-                />
-              </div>
-            );
-          })}
+          {featuresContent.features.map((feature, index) => (
+            <div key={feature.id}>
+              <FeatureCard
+                feature={feature}
+                index={index}
+                isInView={isInView}
+                prefersReducedMotion={prefersReducedMotion}
+              />
+            </div>
+          ))}
         </div>
       </Container>
     </section>
