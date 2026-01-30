@@ -8,6 +8,7 @@ export { NAV_HEIGHT, NAV_HEIGHT_SHRUNK } from './Navigation';
 
 export { default as Hero } from './Hero';
 export { default as Footer } from './Footer';
+export { default as DynamicPricing } from './DynamicPricing';
 
 export { AppMockup } from './AppMockup';
 export type { AppMockupProps } from './AppMockup';

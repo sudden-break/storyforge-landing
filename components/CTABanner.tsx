@@ -81,7 +81,7 @@ export default function CTABanner() {
                   size="lg"
                   gradient
                   asLink
-                  href="https://app.storyforge.cloud"
+                  href="https://app.storyforge.cloud/register"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="shadow-2xl hover:shadow-3xl bg-white text-[#0D0D0D] hover:bg-[#E8E8E8]"

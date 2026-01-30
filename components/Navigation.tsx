@@ -34,6 +34,7 @@ const DEFAULT_NAV_ITEMS: NavItem[] = [
 ];
 
 const APP_URL = 'https://app.storyforge.cloud';
+const REGISTER_URL = 'https://app.storyforge.cloud/register';
 
 // Height of the navigation for scroll padding
 export const NAV_HEIGHT = 80;
@@ -276,7 +277,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                 variant="primary"
                 size="md"
                 gradient
-                href={APP_URL}
+                href={REGISTER_URL}
                 asLink
                 className="hover-lift"
               >
@@ -358,7 +359,7 @@ export const Navigation: React.FC<NavigationProps> = ({
               variant="primary"
               size="lg"
               gradient
-              href={APP_URL}
+              href={REGISTER_URL}
               asLink
               fullWidth
               className="hover-lift"

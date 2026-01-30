@@ -112,7 +112,7 @@ const content: LandingPageContent = {
     headline: "Never Miss an Instagram Story Again",
     subheadline: "Automatically monitor, archive, and transform Instagram Stories with AI-powered content generation.",
     primaryCta: "Start Free",
-    primaryCtaUrl: "https://app.storyforge.cloud",
+    primaryCtaUrl: "https://app.storyforge.cloud/register",
   },
 
   // ------------------------------------------------------------------

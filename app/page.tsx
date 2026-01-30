@@ -2,7 +2,7 @@ import { Navigation } from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Features from '@/components/Features';
 import HowItWorks from '@/components/HowItWorks';
-import Pricing from '@/components/Pricing';
+import DynamicPricing from '@/components/DynamicPricing';
 import FAQ from '@/components/FAQ';
 import TrustSection from '@/components/TrustSection';
 import CTABanner from '@/components/CTABanner';
@@ -33,7 +33,7 @@ export default function Home() {
         <Hero />
         <Features />
         <HowItWorks />
-        <Pricing />
+        <DynamicPricing />
         <FAQ />
         <TrustSection />
         <CTABanner />
